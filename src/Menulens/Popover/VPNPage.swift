@@ -51,6 +51,9 @@ struct SystemIconToggle: View {
     @EnvironmentObject private var monitor: SystemMonitor
 
     var body: some View {
+        #if APPSTORE
+        EmptyView()
+        #else
         let icons = monitor.systemIcons
         Toggle(isOn: Binding(get: { icons.isVisible(icon) }, set: { icons.setVisible(icon, $0) })) {
             Text(L("Show the macOS %@ icon in the menu bar", icon.title)).font(.system(size: 12))
@@ -59,5 +62,6 @@ struct SystemIconToggle: View {
         .controlSize(.mini)
         .padding(.horizontal, 8)
         .onAppear { icons.refresh() }
+        #endif
     }
 }

@@ -5,3 +5,4 @@ build/
 DerivedData/
 .DS_Store
 .claude/
+config/AppStore/Assets.xcassets/

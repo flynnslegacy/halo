@@ -283,6 +283,7 @@ final class StatusItemController: NSResponder {
     private func showContextMenu() {
         let menu = NSMenu()
         menu.addItem(withTitle: L("Menulens Settings…"), action: #selector(openPreferences), keyEquivalent: ",").target = self
+        menu.addItem(withTitle: L("Make a Donation ❤️"), action: #selector(donate), keyEquivalent: "").target = self
         menu.addItem(.separator())
         menu.addItem(withTitle: L("Quit Menulens"), action: #selector(quit), keyEquivalent: "q").target = self
         statusItem.menu = menu
@@ -298,4 +299,5 @@ final class StatusItemController: NSResponder {
 
     @objc private func openPreferences() { onOpenPreferences?() }
     @objc private func quit() { NSApp.terminate(nil) }
+    @objc private func donate() { Donation.open() }
 }

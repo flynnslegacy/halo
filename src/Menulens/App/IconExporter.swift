@@ -48,7 +48,10 @@ enum IconExporter {
 enum PreviewExporter {
     static func export(to directory: String) {
         try? FileManager.default.createDirectory(atPath: directory, withIntermediateDirectories: true)
-        let side: CGFloat = 120
+        // MENULENS_PREVIEW_SIDE sets the mark size in pixels; MENULENS_PREVIEW_CLEAR=1 drops the background.
+        let env = ProcessInfo.processInfo.environment
+        let side = CGFloat(Double(env["MENULENS_PREVIEW_SIDE"] ?? "") ?? 120)
+        let clear = env["MENULENS_PREVIEW_CLEAR"] == "1"
         let samples: [(String, MarkState, MarkConfiguration, StatusBand)] = [
             ("default", MarkState(ringFraction: 1, center: .symbol("wifi", variable: 1), litDots: 3), .default, .good),
             ("cpu42", MarkState(ringFraction: 0.55, center: .text("42"), litDots: 2),
@@ -68,7 +71,7 @@ enum PreviewExporter {
         for (name, state, config, band) in samples {
             let dark = name != "light-bar"
             let img = MarkRenderer.image(for: state, config: config, band: band, darkMenuBar: dark, scale: side / 18)
-            write(img, background: dark ? .black : .white, to: "\(directory)/\(name).png")
+            write(img, background: clear ? .clear : (dark ? .black : .white), to: "\(directory)/\(name).png")
         }
         let items: [ExpandedRenderer.Item] = [
             .init(kind: .memory, reading: MetricReading(fraction: 0.73, shortText: "73", symbolName: "memorychip", prefersText: true)),
@@ -76,7 +79,7 @@ enum PreviewExporter {
             .init(kind: .battery, reading: MetricReading(fraction: 0.8, shortText: "80", symbolName: "battery.75percent"))
         ]
         let (expanded, _) = ExpandedRenderer.image(items, darkMenuBar: true, hovered: .wifi)
-        write(expanded, background: .black, to: "\(directory)/expanded.png", scale: 5)
+        write(expanded, background: clear ? .clear : .black, to: "\(directory)/expanded.png", scale: 5 * side / 120)
     }
 
     private static func write(_ image: NSImage, background: NSColor, to path: String, scale: CGFloat = 1) {

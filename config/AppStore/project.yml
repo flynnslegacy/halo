@@ -1,0 +1,53 @@
+# Mac App Store edition of Menulens (sandboxed, built with -D APPSTORE).
+# Generated into Menulens.xcodeproj by scripts/build-appstore.sh.
+name: Menulens
+options:
+  developmentLanguage: en
+  deploymentTarget:
+    macOS: "14.0"
+packages:
+  MenulensPackage:
+    path: ../..
+targets:
+  MenulensApp:
+    type: application
+    platform: macOS
+    sources:
+      - path: ../../src/Menulens
+      - path: Assets.xcassets
+      - path: PrivacyInfo.xcprivacy
+        buildPhase: resources
+    dependencies:
+      - package: MenulensPackage
+        product: MenulensCore
+    entitlements:
+      path: Menulens.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.device.bluetooth: true
+        com.apple.security.personal-information.location: true
+        com.apple.security.network.client: true
+    settings:
+      base:
+        PRODUCT_NAME: Menulens
+        PRODUCT_MODULE_NAME: MenulensApp
+        PRODUCT_BUNDLE_IDENTIFIER: com.davidmarkowicz.menulens
+        DEVELOPMENT_TEAM: GF9ZH4NVU5
+        CODE_SIGN_STYLE: Automatic
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        SWIFT_VERSION: "5.0"
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) APPSTORE"
+        INFOPLIST_FILE: Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_ENTITLEMENTS: Menulens.entitlements
+schemes:
+  MenulensAppStore:
+    build:
+      targets:
+        MenulensApp: all
+    archive:
+      config: Release

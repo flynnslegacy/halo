@@ -39,6 +39,9 @@ final class SystemIconsService: ObservableObject {
     func isVisible(_ icon: SystemIcon) -> Bool { visible[icon] ?? false }
 
     func refresh() {
+        #if APPSTORE
+        return
+        #endif
         var result: [SystemIcon: Bool] = [:]
         for icon in SystemIcon.allCases {
             let ccKey = "NSStatusItem VisibleCC \(icon.rawValue)" as CFString
@@ -57,6 +60,9 @@ final class SystemIconsService: ObservableObject {
     }
 
     func setVisible(_ icon: SystemIcon, _ show: Bool) {
+        #if APPSTORE
+        return
+        #endif
         let ccKey = "NSStatusItem VisibleCC \(icon.rawValue)" as CFString
         CFPreferencesSetAppValue(ccKey, show as CFBoolean, domain)
         CFPreferencesAppSynchronize(domain)

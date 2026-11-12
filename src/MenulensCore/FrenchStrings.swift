@@ -126,6 +126,9 @@ enum FrenchStrings {
             "Un profil enregistre ce qu'affichent l'anneau, le centre et les points, ainsi que les couleurs de l'icône. Passez de l'un à l'autre en haut du popover.",
         "No profiles yet.": "Aucun profil pour l'instant.", "Add the three starters": "Ajouter les trois profils de départ",
         "Save what's showing now": "Enregistrer l'affichage actuel", "Name": "Nom", "Save": "Enregistrer",
+        "Make a Donation ❤️": "Faire un don ❤️",
+        "Menulens is free. If it helps you, you can support its development.":
+            "Menulens est gratuite. Si elle vous est utile, vous pouvez soutenir son développement.",
         "Active": "Actif", "Use": "Utiliser", "Delete profile": "Supprimer le profil"
     ]
 }

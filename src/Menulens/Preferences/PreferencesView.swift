@@ -53,6 +53,7 @@ struct GeneralTab: View {
                 Text(L("Briefly shows what just happened like plugging in, AirPods connecting, the battery getting low, the network dropping or a change in volume."))
                     .font(.caption).foregroundStyle(.secondary)
             }
+            #if !APPSTORE
             Section(L("macOS menu bar icons")) {
                 Text(L("Menulens replaces these icons. Turn one on to show macOS's own icon next to Menulens."))
                     .font(.caption).foregroundStyle(.secondary)
@@ -61,6 +62,7 @@ struct GeneralTab: View {
                                                      set: { monitor.systemIcons.setVisible(icon, $0) }))
                 }
             }
+            #endif
             Section {
                 Toggle(L("Switch Wi-Fi networks and Bluetooth devices"), isOn: $settings.allowsConnectionSwitching)
                 Text(L("Join networks and connect devices from the popover. This is experimental and may not always work. With this off, the popover still lists networks and devices and can turn Wi-Fi on and off."))
@@ -133,6 +135,10 @@ struct AboutTab: View {
             }
             .font(.callout)
             Spacer()
+            Text(L("Menulens is free. If it helps you, you can support its development."))
+                .font(.callout).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            Button(L("Make a Donation ❤️"), action: Donation.open)
+                .buttonStyle(.borderedProminent).tint(.pink).controlSize(.large)
             Button(L("Quit Menulens")) { NSApp.terminate(nil) }
         }
         .padding(24)

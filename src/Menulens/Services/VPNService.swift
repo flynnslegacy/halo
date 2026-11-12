@@ -54,6 +54,10 @@ final class VPNService: ObservableObject {
     // MARK: - Loading
 
     private static func load() -> [VPNConnection] {
+        #if APPSTORE
+        return VPNConnection.parse(runScutil(["--nc", "list"]) ?? "")
+            .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+        #else
         let fromStore = (FileManager.default.contents(atPath: storePath)).map(VPNConnection.parseNetworkExtension) ?? []
         let fromScutil = VPNConnection.parse(runScutil(["--nc", "list"]) ?? "")
         return VPNConnection.merge(fromStore, fromScutil).map { c in
@@ -61,12 +65,17 @@ final class VPNService: ObservableObject {
             // No NetworkExtension session: keep scutil's status if it knows the service.
             return fromScutil.first(where: { $0.id == c.id }).map { c.with(status: $0.status) } ?? c
         }
+        #endif
     }
 
     private static func control(_ id: String, start: Bool) {
+        #if APPSTORE
+        _ = runScutil(["--nc", start ? "start" : "stop", id])
+        #else
         if !NESession.control(id, start: start) {
             _ = runScutil(["--nc", start ? "start" : "stop", id])
         }
+        #endif
     }
 
     private static func runScutil(_ args: [String]) -> String? {
@@ -83,6 +92,7 @@ final class VPNService: ObservableObject {
     }
 }
 
+#if !APPSTORE
 /// NetworkExtension sessions (`ne_session_*` in libSystem), the API behind the VPN menu.
 /// Looked up at runtime; every call returns nil/false when it is unavailable.
 private enum NESession {
@@ -137,3 +147,4 @@ private enum NESession {
         } ?? false
     }
 }
+#endif

@@ -81,6 +81,14 @@ struct MainPage: View {
             Divider().padding(.horizontal, 2)
             HStack {
                 FooterLink(title: L("Menulens Settings…"), action: onOpenPreferences)
+                Button(action: Donation.open) {
+                    Image(systemName: "heart.fill").font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.pink)
+                        .frame(width: 26, height: 26)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .help(L("Make a Donation ❤️"))
                 Button(action: onQuit) {
                     Image(systemName: "power").font(.system(size: 12, weight: .semibold))
                         .frame(width: 26, height: 26)

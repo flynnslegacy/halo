@@ -5,7 +5,8 @@ let package = Package(
     name: "Menulens",
     platforms: [.macOS(.v14)],
     products: [
-        .executable(name: "Menulens", targets: ["Menulens"])
+        .executable(name: "Menulens", targets: ["Menulens"]),
+        .library(name: "MenulensCore", targets: ["MenulensCore"])
     ],
     targets: [
         .target(name: "MenulensCore", path: "src/MenulensCore"),
