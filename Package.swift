@@ -2,17 +2,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "Halo",
+    name: "Menulens",
     platforms: [.macOS(.v14)],
     products: [
-        .executable(name: "Halo", targets: ["Halo"])
+        .executable(name: "Menulens", targets: ["Menulens"])
     ],
     targets: [
-        .target(name: "HaloCore", path: "src/HaloCore"),
+        .target(name: "MenulensCore", path: "src/MenulensCore"),
         .executableTarget(
-            name: "Halo",
-            dependencies: ["HaloCore"],
-            path: "src/Halo",
+            name: "Menulens",
+            dependencies: ["MenulensCore"],
+            path: "src/Menulens",
             linkerSettings: [
                 .linkedFramework("IOKit"),
                 .linkedFramework("CoreWLAN"),
@@ -22,6 +22,6 @@ let package = Package(
                 .linkedFramework("ServiceManagement")
             ]
         ),
-        .testTarget(name: "HaloCoreTests", dependencies: ["HaloCore"], path: "tests/HaloCoreTests")
+        .testTarget(name: "MenulensCoreTests", dependencies: ["MenulensCore"], path: "tests/MenulensCoreTests")
     ]
 )

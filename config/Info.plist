@@ -5,17 +5,17 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>CFBundleExecutable</key>
-    <string>Halo</string>
+    <string>Menulens</string>
     <key>CFBundleIconFile</key>
     <string>AppIcon</string>
     <key>CFBundleIdentifier</key>
-    <string>local.halo.menubar</string>
+    <string>local.menulens.menubar</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>Halo</string>
+    <string>Menulens</string>
     <key>CFBundleDisplayName</key>
-    <string>Halo</string>
+    <string>Menulens</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
@@ -31,10 +31,10 @@
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>Halo shows your paired Bluetooth devices, whether they're connected and their battery level, and connects or disconnects a device when you click it. It never pairs with new devices or sends anything.</string>
+    <string>Menulens shows your paired Bluetooth devices, whether they're connected and their battery level, and connects or disconnects a device when you click it. It never pairs with new devices or sends anything.</string>
     <key>NSLocationUsageDescription</key>
-    <string>macOS treats Wi-Fi network names as location data, so Halo needs Location access to show your network's name and the networks around you. Your location is never stored, used or sent anywhere.</string>
+    <string>macOS treats Wi-Fi network names as location data, so Menulens needs Location access to show your network's name and the networks around you. Your location is never stored, used or sent anywhere.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>macOS treats Wi-Fi network names as location data, so Halo needs Location access to show your network's name and the networks around you. Your location is never stored, used or sent anywhere.</string>
+    <string>macOS treats Wi-Fi network names as location data, so Menulens needs Location access to show your network's name and the networks around you. Your location is never stored, used or sent anywhere.</string>
 </dict>
 </plist>
