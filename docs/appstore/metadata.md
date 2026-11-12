@@ -4,7 +4,8 @@
 
 | Champ | Valeur |
 |---|---|
-| Nom | Menulens (repli si pris : « Menulens – Barre des menus ») |
+| Nom | « Menulens – Barre des menus » (FR), « Menulens – Menu Bar Monitor » (EN) ; « Menulens » seul est déjà pris |
+| Identifiant Apple | 6833845388 |
 | Identifiant de bundle | com.davidmarkowicz.menulens |
 | SKU | menulens-macos |
 | Langue principale | Français |
